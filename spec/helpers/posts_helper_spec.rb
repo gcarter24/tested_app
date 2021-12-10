@@ -1,5 +1,5 @@
-require 'rails_helper'
-
+require "rails_helper"
+include PostsHelper
 # Specs in this file have access to a helper object that includes
 # the PostsHelper. For example:
 #
@@ -11,5 +11,15 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "assigns a user to a post " do
+    # AAA
+    # Arrange, Act Assert
+    # Arrange
+    creator = User.first_or_create!(email: "chris@example.com", password: "password", password_confirmation: "password")
+    @post = Post.new(title: "MyString", body: "MyText", views: 1)
+    # Act
+    returned_post = assign_post_creator(@post, creator)
+    # Assert
+    expect(returned_post.user).to be(creator)
+  end
 end

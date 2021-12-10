@@ -105,9 +105,12 @@ RSpec.describe "/posts", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) do {
+        "id" => "1",
+        "title" => "Test",
+        "body" => "12345",
+        "user" => current_user,
+      }       end
 
       it "updates the requested post" do
         post = Post.new(valid_attributes)
